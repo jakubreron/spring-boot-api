@@ -22,7 +22,6 @@ public class ApiService {
     public String PLACEHOLDER_API_URL = "http://jsonplaceholder.typicode.com/comments?postId=";
 
     public HttpEntity request;
-
     public RestTemplate restTemplate;
 
     public ApiService(RestTemplate restTemplate) {
@@ -40,6 +39,7 @@ public class ApiService {
         headers.set("x-rapidapi-key", STOCKS_API_KEY);
 
         request = new HttpEntity(headers);
+
         ResponseEntity<String> response = restTemplate.exchange(
                 STOCKS_API_URL + name,
                 HttpMethod.GET,
@@ -48,8 +48,8 @@ public class ApiService {
         );
 
         ObjectMapper mapper = new ObjectMapper();
-
         JsonNode json = mapper.readTree(response.getBody());
+
         List<Stock> values = new ArrayList();
         json.get("quotes").forEach(entry -> values.add(mapper.convertValue(entry, Stock.class)));
 
