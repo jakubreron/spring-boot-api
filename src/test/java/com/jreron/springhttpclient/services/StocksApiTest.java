@@ -1,6 +1,5 @@
 package com.jreron.springhttpclient.services;
 
-import com.jreron.springhttpclient.api.domain.Comment;
 import com.jreron.springhttpclient.api.domain.Stock;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -12,15 +11,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class ApiServiceTest {
+public class StocksApiTest {
     @Autowired
     ApiService apiService;
-
-    @Test
-    public void testGetComments() throws Exception {
-        Comment[] comments = apiService.getComments(1);
-        Assertions.assertEquals(5, comments.length);
-    }
 
     @Test
     public void testGetStocks() throws Exception {
