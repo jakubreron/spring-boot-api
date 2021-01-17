@@ -13,11 +13,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest
 public class PlaceholderApiTest {
     @Autowired
-    ApiService apiService;
+    PlaceholderApiService placeholderApiService;
 
     @Test
     public void testGetComments() throws Exception {
-        Comment[] comments = apiService.getComments(1);
+        Comment[] comments = placeholderApiService.getComments(1);
         Assertions.assertEquals(5, comments.length);
     }
 }

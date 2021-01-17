@@ -11,13 +11,13 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class StocksApiTest {
+public class StockApiTest {
     @Autowired
-    ApiService apiService;
+    StockApiService stockApiService;
 
     @Test
     public void testGetStocks() throws Exception {
-        Stock[] items = apiService.getStocks("tesla");
+        Stock[] items = stockApiService.getStocks("tesla");
         Assertions.assertEquals(7, items.length);
     }
 }

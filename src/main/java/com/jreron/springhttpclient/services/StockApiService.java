@@ -3,7 +3,6 @@ package com.jreron.springhttpclient.services;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jreron.springhttpclient.api.domain.Comment;
 import com.jreron.springhttpclient.api.domain.Stock;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -16,22 +15,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ApiService {
+public class StockApiService {
     public String STOCKS_API_URL = "https://apidojo-yahoo-finance-v1.p.rapidapi.com/auto-complete?q=";
     public String STOCKS_API_KEY = "a38dd1a056mshc2973d87df3f49fp17e092jsn1263c3c278ab";
-    public String PLACEHOLDER_API_URL = "http://jsonplaceholder.typicode.com/comments?postId=";
 
     public HttpEntity request;
+
     public RestTemplate restTemplate;
-
-    public ApiService(RestTemplate restTemplate) {
+    public StockApiService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-    }
-
-    public Comment[] getComments(Integer postId) {
-        Comment[] comments = restTemplate.getForObject(PLACEHOLDER_API_URL + postId, Comment[].class);
-
-        return comments;
     }
 
     public Stock[] getStocks(String name) throws JsonProcessingException {
