@@ -20,4 +20,10 @@ public class StockApiTest {
         Stock[] items = stockApiService.getStocks("tesla");
         Assertions.assertEquals(7, items.length);
     }
+
+    @Test
+    public void testStockIndex() throws Exception {
+        Stock[] items = stockApiService.getStocks("tesla");
+        Assertions.assertEquals("quotes", items[0].index);
+    }
 }

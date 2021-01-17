@@ -20,4 +20,10 @@ public class PlaceholderApiTest {
         Comment[] comments = placeholderApiService.getComments(1);
         Assertions.assertEquals(5, comments.length);
     }
+
+    @Test
+    public void testCommentId() throws Exception {
+        Comment[] comments = placeholderApiService.getComments(1);
+        Assertions.assertEquals(1, comments[0].id);
+    }
 }
