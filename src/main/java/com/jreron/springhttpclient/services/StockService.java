@@ -15,25 +15,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class StockApiService {
-    public String STOCKS_API_URL = "https://apidojo-yahoo-finance-v1.p.rapidapi.com/auto-complete?q=";
-    public String STOCKS_API_KEY = "a38dd1a056mshc2973d87df3f49fp17e092jsn1263c3c278ab";
+public class StockService {
+    public String API_URL = "https://apidojo-yahoo-finance-v1.p.rapidapi.com/auto-complete?q=";
+    public String API_KEY = "a38dd1a056mshc2973d87df3f49fp17e092jsn1263c3c278ab";
 
     public HttpEntity request;
 
     public RestTemplate restTemplate;
-    public StockApiService(RestTemplate restTemplate) {
+    public StockService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
-    public Stock[] getStocks(String name) throws JsonProcessingException {
+    public Stock[] getStocks(String name, String region) throws JsonProcessingException {
         HttpHeaders headers = new HttpHeaders();
-        headers.set("x-rapidapi-key", STOCKS_API_KEY);
+        headers.set("x-rapidapi-key", API_KEY);
 
         request = new HttpEntity(headers);
 
+        String initialQuery = API_URL + name;
+        String regionQuery = ((region != "") ? "&region=" + region : "");
+
         ResponseEntity<String> response = restTemplate.exchange(
-                STOCKS_API_URL + name,
+                initialQuery + regionQuery,
                 HttpMethod.GET,
                 request,
                 String.class
